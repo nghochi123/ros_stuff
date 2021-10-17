@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+    <include file="$(find smb_gazebo)/launch/smb_gazebo.launch">
+    	<arg name="world_file" value="$(find smb_highlevel_controller)/worlds/singlePillar.world"/>
+        <arg name="laser_enabled" value="true"/>
+    </include>
+    
+    <!-- <include file="$(find smb_control)/launch/control.launch"/> -->
+
+    <!-- <arg name="file"/> -->
+    <param name ="/use_sim_time" value="true"/>
+
+    <!-- <node name="rosbag" pkg="rosbag" type="play" args="$(dirname)/smb_navigation.bag" output="screen"/> -->
+
+    <node name="smb_localization" pkg="smb_localization" type="smb_localization" output="screen">
+        <rosparam command="load" file="$(find smb_localization)/config/localization.yaml" />
+    </node>
+
+</launch>
